@@ -34,17 +34,6 @@ locals {
   private_subnet_rtb_name_db = "rtb-shared-dev-db-private-mum-01"
  
  
-  network_account_id = module.aft_account_list.param_name_values["${local.ssm_parameter_path_account_list}account-lz2.0-network"]
-  network_tgw_id     = data.aws_ec2_transit_gateway.primary_network_tgw.id
-  shared_subnet_list = [
-  ]
-  sharing_dev_account_list = [""]
-  names_of_asso_service = [
-    "sns_zone_id"
-  ]
- 
-  vpc_endpoint_ssm_parameter_path = "/mm/aft/account_customization/output/account-lz2.0-common/"
- 
  
   primary_igw_name           = "igw-shared-dev-mum-01"
   public_nat_rt_name         = "rtb-shared-dev-publicnat-mum01"
@@ -64,9 +53,9 @@ locals {
     requester-name              = "vikas dubey"
   }
  
-  ssm_parameter_path              = "/mm/aft/account_customization/output/"
-  ssm_parameter_path_org_id       = "/mm/static/master/org-id"
-  ssm_parameter_path_account_list = "/mm/aft/account_id/"
+  ssm_parameter_path              = "/aft/account_customization/output/"
+  ssm_parameter_path_org_id       = "/static/master/org-id"
+  ssm_parameter_path_account_list = "/aft/account_id/"
  
   # export outputs of type string
   export_output = {
