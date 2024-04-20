@@ -3,12 +3,12 @@ module "transit_gateway" {
    version = "2.8.0"
    
    name    = local.tgw_name
-   descrption = "Primary TGW"
+   description = "Primary TGW"
    
    create_tgw                     = true
    amazon_side_asn                = local.tgw_aws_asn
    enable_default_route_table_association  = false
-   enable_default_route_table_propogation  = false
+   enable_default_route_table_propagation  = false
    enable_auto_accept_shared_attachments   = true
    enable_vpn_ecmp_support                 = false
    ram_allow_external_principals           = false
@@ -36,22 +36,6 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
    )
 }
 
-resource "aws_route53_zone_association" "all_other_private_r53_zone_association" {
-   count    = length(local.names_of_asso_service)
-   vpc_id   = aws_vpc.network_vpc.id
-   zone_id  = module.vpc_endpoint_info.param_name_values[join("", [local.vpc_endpoint_ssm_parameter_path, local.names_of_asso_service[count.index]])]
-}
-
-data "aws_ec2_transit_gateway_vpc_attachment" "inspection_egress_vpc" {
-  filter {
-     name = "state"
-	 values = ["available"]
-  }
-  filter {
-     name = "vpc-id"
-	 values = [local.inspection_vpc.id]
-  }
- }
  
  resource "aws_ec2_transit_gateway_route" "network_route" {
     destination_cidr_block      = local.primary_vpc_cidr
@@ -61,8 +45,3 @@ data "aws_ec2_transit_gateway_vpc_attachment" "inspection_egress_vpc" {
 
 #Shared-Dev Routes
 
-resource "aws_ec2_transit_gateway_route" "shared_dev_route" {
-    destination_cidr_block      = local.shared_dev_vpc_cidr
-	transit_gateway_attachment_id = module.aft_accounts_info.param_name_values["${local.ssm_parameter_path}account-lz2-shared-dev/tgw_attachment_id"]
-	transit_gateway_route_table_id = module.transit_gateway_ec2_transit_gateway_route_table_id
-}
