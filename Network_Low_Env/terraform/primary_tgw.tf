@@ -11,7 +11,7 @@ module "transit_gateway" {
    enable_default_route_table_propagation  = false
    enable_auto_accept_shared_attachments   = true
    enable_vpn_ecmp_support                 = false
-   ram_allow_external_principals           = false
+   ram_allow_external_principals           = true
    ram_principals                          = ["471112710624"]
    ram_name                                = "ram_network_tgw_mum_01"
    
