@@ -10,7 +10,7 @@ resource "aws_vpc" "network_vpc" {
     { "Name"    = "${local.primary_vpc_name}",
       "flowlog" = "enable"
     },
-    local.common_tags
+    local.common-tags
   )
 }
  
@@ -27,7 +27,7 @@ resource "aws_subnet" "private_subnet" {
         format("${local.primary_vpc_name}-private-%s", element(local.availability_zones, count.index))
       )
     },
-    local.common_tags
+    local.common-tags
   )
 }
  
@@ -41,7 +41,7 @@ resource "aws_route_table" "private_tgw_rt" {
         format("${local.primary_vpc_name}-private-rt-%s", element(local.availability_zones, count.index))
       )
     },
-    local.common_tags
+    local.common-tags
   )
 }
  
