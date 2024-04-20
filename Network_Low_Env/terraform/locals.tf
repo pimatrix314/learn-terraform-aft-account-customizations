@@ -20,9 +20,7 @@ locals {
   common-tags = {
      requester-name         = "vikas dubey"
 	 }
-  ssm_parameter_path        = "/vv/aft/account_customization/output/"
   ssm_parameter_path_org_id = "/vv/static/master/org-id"
-  ssm_parameter_path_account_list  = "/vv/aft/account_id/"
   
   #export outputs of type string
   export_output = {
