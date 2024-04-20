@@ -18,7 +18,7 @@ locals {
   
   tgw_name       = "tgw-network-mum-01"
   tgw_aws_asn    = 65532
-  root_ou_arn    = "arn:aws:organizations::211125643431:root/o-5bsj7qdwcs/r-8n5c"
+  root_ou_arn    = "arn:aws:organizations::211125643431:root/o-5bsj7qdwcs"
   
   common-tags = {
      requester-name         = "vikas dubey"
