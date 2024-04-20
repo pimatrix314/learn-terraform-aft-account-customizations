@@ -16,7 +16,7 @@ module "transit_gateway" {
    ram_name                                = "ram_network_tgw_mum_01"
    
    tags = merge(
-     local.common_tags
+     local.common-tags
    )
 }
 
@@ -32,7 +32,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
    transit_gateway_default_route_table_propagation = "false"
    tags = merge(
      { "Name" : "tgw-network-tgwattach-mum-01" },
-     local.common_tags
+     local.common-tags
    )
 }
 
