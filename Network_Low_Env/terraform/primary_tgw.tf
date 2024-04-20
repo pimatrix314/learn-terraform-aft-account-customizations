@@ -8,7 +8,7 @@ module "transit_gateway" {
    create_tgw                              = true
    amazon_side_asn                         = local.tgw_aws_asn
    enable_default_route_table_association  = false
-   enable_default_route_table_propogation  = false
+   enable_default_route_table_propagation  = false
    enable_auto_accept_shared_attachments   = true
    enable_vpn_ecmp_support                 = false
    ram_allow_external_principals           = false
