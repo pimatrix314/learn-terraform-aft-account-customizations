@@ -36,13 +36,6 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
    )
 }
 
-module "vpc_endpoint_info" {
-   providers              = {aws = aws.aft_management_account_admin}
-   source                 = "../../modules/ssm_parameter_by_path/"
-   ssm_parameter_path     = local.vpc_endpoint_ssm_parameter_path
-   ssm_parameter_path_recursive = true
-}
-
  
  resource "aws_ec2_transit_gateway_route" "network_route" {
     destination_cidr_block      = local.primary_vpc_cidr
