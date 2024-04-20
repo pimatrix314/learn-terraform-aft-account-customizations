@@ -15,7 +15,7 @@ locals {
 	]
 	
   
-  private_subnet_list    = ["10.1.0.0/17", 10.1.128.0/17"]
+  private_subnet_list    = ["10.1.0.0/17", "10.1.128.0/17"]
   private_subnet_name    = ["snt-nw-tgwattach-mum-a01", "snt-nw-tgwattach-mum-b01"]
   private_subnet_routetable = ["rtb-nw-private-mum-a01", "rtb-nw-private-mum-b01"]
   
@@ -26,7 +26,7 @@ locals {
   
   tgw_name       = "tgw-network-mum-01"
   tgw_aws_asn    = 65532
-  root_ou_arn    = "arn:aws:organizations::${module.aft_account_list.param_name_values["${local.ssm_parameter_path_account_list}account-lz2-master]}:organizations/${data.aws_ssm_parameter.master_org_id.value}"
+  root_ou_arn    = "arn:aws:organizations::${module.aft_account_list.param_name_values["${local.ssm_parameter_path_account_list}techtechy]}:organization/${data.aws_ssm_parameter.master_org_id.value}"
   
   common-tags = {
      requester-name         = "vikas dubey"
@@ -37,10 +37,10 @@ locals {
   
   #export outputs of type string
   export_output = {
-     vpc_id           = aws_vpc.network_vpc.id
+         vpc_id           = aws_vpc.network_vpc.id
 	 vpc_cidr         = aws_vpc.network_vpc.cidr_block
 	 tgw_id           = module.transit_gateway.ec2_transit_gateway.id
-  }
+  }  
   #export outputs of type list
   export_list_output = {
   
