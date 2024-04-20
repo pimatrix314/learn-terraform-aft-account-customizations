@@ -30,18 +30,4 @@ resource "aws_subnet" "private_subnet" {
     local.common-tags
   )
 }
- 
-resource "aws_route_table" "private_tgw_rt" {
-  count  = length(local.private_subnet_list)
-  vpc_id = aws_vpc.network_vpc.id
-  tags = merge(
-    {
-      Name = try(
-        local.private_subnet_rtb_name[count.index],
-        format("${local.primary_vpc_name}-private-rt-%s", element(local.availability_zones, count.index))
-      )
-    },
-    local.common-tags
-  )
-}
 
