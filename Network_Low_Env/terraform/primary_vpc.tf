@@ -44,20 +44,4 @@ resource "aws_route_table" "private_tgw_rt" {
     local.common-tags
   )
 }
- 
-resource "aws_route_table_association" "private_tgw_rt_assoc" {
-  count          = length(local.private_subnet_list)
-  subnet_id      = element(aws_subnet.private_subnet.*.id, count.index)
-  route_table_id = aws_route_table.private_tgw_rt[count.index].id
-}
- 
-resource "aws_route" "private_tgw_route" {
-  count                  = length(local.private_subnet_list)
-  route_table_id         = aws_route_table.private_tgw_rt[count.index].id
-  destination_cidr_block = "0.0.0.0/0"
-  transit_gateway_id     = module.transit_gateway.ec2_transit_gateway_id
- 
-  timeouts {
-    create = "5m"
-  }
-}
+
