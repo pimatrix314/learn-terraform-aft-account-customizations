@@ -5,9 +5,6 @@ locals {
   availability_zones = ["${local.primary_region}a", "${local.primary_region}b"]
   
   primary_vpc_cidr   = "10.1.0.0/16"
-  network_vpc_cidr    = module.aft.accounts_info.param_name_values["${local.ssm_parameter_path}account-lz2-network/vpc_cidr"]
-  
-  log_archive_account_id = module.aft.accounts_info.param_name_values["${local.ssm_parameter_path}Log Archive"]
 	
   
   private_subnet_list    = ["10.1.0.0/17", "10.1.128.0/17"]
