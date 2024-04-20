@@ -36,7 +36,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
    )
 }
 
-module "vpc_endpoint_info {
+module "vpc_endpoint_info" {
    providers              = {aws = aws.aft_management_account_admin}
    source                 = "../../modules/ssm_parameter_by_path/"
    ssm_parameter_path     = local.vpc_endpoint_ssm_parameter_path
@@ -47,7 +47,7 @@ module "vpc_endpoint_info {
  resource "aws_ec2_transit_gateway_route" "network_route" {
     destination_cidr_block      = local.primary_vpc_cidr
 	transit_gateway_attachment_id = aws_ec2_transit_gateway_vpc_attachment.network_vpc.id
-	transit_gateway_route_table_id = module.transit_gateway_ec2_transit_gateway_route_table_id
+	transit_gateway_route_table_id = module.transit_gateway.ec2_transit_gateway_route_table_id
 }
 
 #Shared-Dev Routes
