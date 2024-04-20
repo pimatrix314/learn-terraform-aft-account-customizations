@@ -12,7 +12,7 @@ module "transit_gateway" {
    enable_auto_accept_shared_attachments   = true
    enable_vpn_ecmp_support                 = false
    ram_allow_external_principals           = false
-   ram_principals                          = [local.root_ou_arn]
+   ram_principals                          = ["471112710624"]
    ram_name                                = "ram_network_tgw_mum_01"
    
    tags = merge(
