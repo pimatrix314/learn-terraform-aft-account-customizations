@@ -1,4 +1,4 @@
-module "transit gateway" {
+module "transit_gateway" {
    source  = "terraform-aws-modules/transit-gateway/aws"
    version = "2.8.0"
    
@@ -53,7 +53,7 @@ data "aws_ec2_transit_gateway_vpc_attachment" "inspection_egress_vpc" {
   }
  }
  
- resource "aws_ec2_transit_gateway_route" "network route" {
+ resource "aws_ec2_transit_gateway_route" "network_route" {
     destination_cidr_block      = local.primary_vpc_cidr
 	transit_gateway_attachment_id = aws_ec2_transit_gateway_vpc_attachment.network_vpc.id
 	transit_gateway_route_table_id = module.transit_gateway_ec2_transit_gateway_route_table_id
