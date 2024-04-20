@@ -16,9 +16,6 @@ locals {
   enable_dns_hostnames         = true
   assign_generated_ipv6_cidr_block = false
   
-  tgw_name       = "tgw-network-mum-01"
-  tgw_aws_asn    = 65532
-  root_ou_arn    = "arn:aws:organizations::${module.aft_account_list.param_name_values["${local.ssm_parameter_path_account_list}techtechy"]}:organization/${data.aws_ssm_parameter.master_org_id.value}"
   
   common-tags = {
      requester-name         = "vikas dubey"
@@ -31,7 +28,6 @@ locals {
   export_output = {
          vpc_id           = aws_vpc.network_vpc.id
 	 vpc_cidr         = aws_vpc.network_vpc.cidr_block
-	 tgw_id           = module.transit_gateway.ec2_transit_gateway.id
   }  
   #export outputs of type list
   export_list_output = {
