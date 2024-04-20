@@ -1,6 +1,6 @@
 module "transit gateway" {
    source  = "terraform-aws-modules/transit-gateway/aws"
-   version = 2.8.0
+   version = "2.8.0"
    
    name    = local.tgw_name
    descrption = "Primary TGW"
@@ -34,13 +34,6 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
      { "Name" : "tgw-network-tgwattach-mum-01" },
      local.common_tags
    )
-}
-
-module "vpc_endpoint_info {
-   providers              = {aws = aws.aft_management_account_admin}
-   source                 = "../../modules/ssm_parameter_by_path/"
-   ssm_parameter_path     = local.vpc_endpoint_ssm_parameter_path
-   ssm_parameter_path_recursive = true
 }
 
 resource "aws_route53_zone_association" "all_other_private_r53_zone_association" {

@@ -5,14 +5,9 @@ locals {
   availability_zones = ["${local.primary_region}a", "${local.primary_region}b"]
   
   primary_vpc_cidr   = "10.1.0.0/16"
-  network_vpc_cidr    = module.aft.accounts_info.param_name_values["${local.ssm_parameter_path}account_lz2_nw_lwenv/vpc_cidr"]
+  network_vpc_cidr    = module.aft.accounts_info.param_name_values["${local.ssm_parameter_path}account-lz2-network/vpc_cidr"]
   
   log_archive_account_id = module.aft.accounts_info.param_name_values["${local.ssm_parameter_path}Log Archive"]
-  
-  # other endpoint association
-  names_of_asso_service = [
-    "sns_zone_id"
-	]
 	
   
   private_subnet_list    = ["10.1.0.0/17", "10.1.128.0/17"]
@@ -26,7 +21,7 @@ locals {
   
   tgw_name       = "tgw-network-mum-01"
   tgw_aws_asn    = 65532
-  root_ou_arn    = "arn:aws:organizations::${module.aft_account_list.param_name_values["${local.ssm_parameter_path_account_list}techtechy]}:organization/${data.aws_ssm_parameter.master_org_id.value}"
+  root_ou_arn    = "arn:aws:organizations::${module.aft_account_list.param_name_values["${local.ssm_parameter_path_account_list}techtechy"]}:organization/${data.aws_ssm_parameter.master_org_id.value}"
   
   common-tags = {
      requester-name         = "vikas dubey"
