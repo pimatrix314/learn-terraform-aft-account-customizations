@@ -50,7 +50,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
 resource "aws_ec2_transit_gateway_route_table" "tgwrtb-nonprd-mum-01" {
   transit_gateway_id = module.transit_gateway.ec2_transit_gateway_id
   tags = merge(
-     { "Name" : "tgwrtb-nonprod-mum-01" }
-     local.common_tags
+     { "Name" : "tgwrtb-nonprod-mum-01" },
+     local.common-tags
      )
 }
