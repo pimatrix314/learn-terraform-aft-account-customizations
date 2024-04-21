@@ -43,7 +43,6 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "network_vpc" {
 	transit_gateway_route_table_id = module.transit_gateway.ec2_transit_gateway_route_table_id
 }
 
-#Shared-Dev Routes
 
 
 #Route Table for non-prod
@@ -54,3 +53,21 @@ resource "aws_ec2_transit_gateway_route_table" "tgwrtb-nonprd-mum-01" {
      local.common-tags
      )
 }
+
+#Shared Dev Route table association
+resource "aws_ec2_transit_gateway_route_table_association" "tgw_shared_dev_rtb" {
+  transit_gateway_attachment_id = "tgw-attach-0a2073c886e390229"
+  transit_gateway_route_table_id = "aws_ec2_transit_gateway_route_table.tgwrtb-nonprod-mum-01.id"
+  depends_on = [
+    module.transit_gateway
+  ]
+}
+
+#Shared Dev Routes
+resource "aws_ec2_transit_gateway_route" "tgw_shared_dev_route" {
+  destination_cidr_block         = "0.0.0.0/0"
+  transit_gateway_attachment_id  = "tgw-attach-0a2073c886e390229"
+  transit_gateway_route_table_id = "aws_ec2_transit_gateway_route_table.tgwrtb-nonprod-mum-01.id"
+}
+
+
