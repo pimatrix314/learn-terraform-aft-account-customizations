@@ -65,7 +65,7 @@ resource "aws_ec2_transit_gateway_route_table_association" "tgw_shared_dev_rtb" 
 
 #Shared Dev Routes
 resource "aws_ec2_transit_gateway_route" "tgw_shared_dev_route" {
-  destination_cidr_block         = "0.0.0.0/0"
+  destination_cidr_block         = "10.2.0.0/16"
   transit_gateway_attachment_id  = "tgw-attach-0a2073c886e390229"
   transit_gateway_route_table_id = "aws_ec2_transit_gateway_route_table.tgwrtb-nonprod-mum-01.id"
 }
